@@ -1,0 +1,37 @@
+<link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+
+<div class="container-fluid">
+	<h1>Movies</h1>
+
+	<input class="form-control wbdv-new-movie-title"/>
+	<button class="wbdv-create btn btn-primary btn-block">New</button>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Title
+				</th>
+			</tr>
+		</thead>
+		<tbody id="wbdv-movie-table-body">
+			<tr class="movieRowTemplate">
+				<td class="wbdv-title">
+					Aliens
+				</td>
+				<td>
+					<i class="wbdv-remove-movie float-right fa fa-times"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="movies.js"></script>
