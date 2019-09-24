@@ -3,11 +3,11 @@
 (function() {
     var $usernameFld, $passwordFld;
     var $removeBtn, $editBtn, $createBtn;
-    var $firstNameFld, $lastNameFld;
+    var $firstNameFld, $lastNameFld, $roleFld;
     var $userRowTemplate, $tbody;
     // var userService = new AdminUserServiceClient();
     const users = [1, 2, 3, 4, 5, 6]
-    const user = { 'username': 'a', 'password': '***', 'first_name': 'b', 'last_name': 'l' }
+    const user = { 'username': 'a', 'password': '***', 'first_name': 'b', 'last_name': 'l', 'role': 'Faculty' }
         // const users = [{ 'username': 'a', 'password': '***', 'first': 'b', 'last': 'l' }]
     $(main);
 
@@ -16,6 +16,12 @@
     //   Binds action icons, such as create, update, select, and delete, to respective event handlers
     function main() {
         $userRowTemplate = $('.wbdv-template');
+        $usernameFld = $('#usernameFld');
+        $passwordFld = $('#passwordFld');
+        $firstNameFld = $('#firstNameFld');
+        $lastNameFld = $('#lastNameFld')
+        $roleFld = $('#roleFld')
+
         $tbody = $('tbody')
         renderUser(user)
             // renderUsers(users);
@@ -54,6 +60,7 @@
         rowClone.find('.wbdv-password').html(user.password);
         rowClone.find('.wbdv-first-name').html(user.first_name);
         rowClone.find('.wbdv-last-name').html(user.last_name);
+        rowClone.find('.wbdv-role').html(user.role)
         $tbody.append(rowClone)
     }
 
