@@ -5,10 +5,11 @@
     var $removeBtn, $editBtn, $createBtn;
     var $firstNameFld, $lastNameFld, $roleFld;
     var $userRowTemplate, $tbody;
+    var $searchBtn, $addBtn, $checkBtn;
     // var userService = new AdminUserServiceClient();
-    const users = [1, 2, 3, 4, 5, 6]
-    const user = { 'username': 'a', 'password': '***', 'first_name': 'b', 'last_name': 'l', 'role': 'Faculty' }
-        // const users = [{ 'username': 'a', 'password': '***', 'first': 'b', 'last': 'l' }]
+    // const users = [1, 2, 3, 4, 5, 6]
+    // const user = { 'username': 'a', 'password': '***', 'first_name': 'b', 'last_name': 'l', 'role': 'Faculty' }
+    // const users = [{ 'username': 'a', 'password': '***', 'first': 'b', 'last': 'l' }]
     $(main);
 
     // executes on document load, when the browser is done parsing the html page and the dom is ready.
@@ -16,20 +17,40 @@
     //   Binds action icons, such as create, update, select, and delete, to respective event handlers
     function main() {
         $userRowTemplate = $('.wbdv-template');
-        $usernameFld = $('#usernameFld');
-        $passwordFld = $('#passwordFld');
-        $firstNameFld = $('#firstNameFld');
-        $lastNameFld = $('#lastNameFld')
-        $roleFld = $('#roleFld')
-
+        $usernameFld = $('#usernameFld')[0];
+        $passwordFld = $('#passwordFld')[0];
+        $firstNameFld = $('#firstNameFld')[0];
+        $lastNameFld = $('#lastNameFld')[0];
+        $roleFld = $('#roleFld')[0];
+        $addBtn = $('.wbdv-create')[0];
         $tbody = $('tbody')
-        renderUser(user)
-            // renderUsers(users);
+        console.log($addBtn)
+        $addBtn.addEventListener('click', createUser);
+
     }
 
-    // // handles create user event when user clicks on plus icon. Reads from the form elements and creates a user object.
-    // //  Uses the user service createUser() function to create the new user. Updates the list of users on server response
-    // function createUser() {…}
+    // handles create user event when user clicks on plus icon. Reads from the form elements and creates a user object.
+    //  Uses the user service createUser() function to create the new user. Updates the list of users on server response
+    function createUser() {
+        let username = $usernameFld.value;
+        let password = $passwordFld.value;
+        let firstName = $firstNameFld.value;
+        let lastName = $lastNameFld.value;
+        let role = $roleFld.value;
+
+        console.log('createUser')
+
+        let user = {
+            'username': username,
+            'password': password,
+            'first_name': firstName,
+            'last_name': lastName,
+            'role': role
+        };
+        console.log('user', user)
+
+        renderUser(user)
+    }
 
     // // called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all the users 
     // // and passes response to renderUsers
@@ -55,6 +76,7 @@
 
     // accepts a user object as parameter and updates the form with the user propertie
     function renderUser(user) {
+        console.log('renderUser', user)
         const rowClone = $userRowTemplate.clone();
         rowClone.find('.wbdv-username').html(user.username);
         rowClone.find('.wbdv-password').html(user.password);
@@ -76,4 +98,4 @@
             renderUser(user_one)
         }
     }
-})();
+})()
