@@ -1,6 +1,6 @@
 function AdminUserServiceClient() {
     this.createUser = createUser;
-    // this.findAllUsers = findAllUsers;
+    this.findAllUsers = findAllUsers;
     // this.findUserById = findUserById;
     // this.deleteUser = deleteUser;
     // this.updateUser = updateUser;
@@ -9,18 +9,28 @@ function AdminUserServiceClient() {
 
     //accepts a user object and adds it to a collection of users
     function createUser(user, callback) {
-        url = this.url + '/users'
-        fetch(url, {
+        url = this.url + '/users';
+        let promise = fetch(url, {
             method: 'post',
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => callback(response.json()))
+        })
+        promise.then(response => response.json().then(parsedJson => callback(parsedJson)))
     }
 
     //retrieves all users as an array of JSON objects
-    // function findAllUsers(callback) {}
+    function findAllUsers(callback) {
+        url = this.url + '/users';
+        let promise = fetch(url, {
+            method: 'get',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        promise.then(response => response.json().then(parsedJson => callback(parsedJson)))
+    }
 
     //retrieves a single user object whose id is equal to the id parameter
     // function findUserById(userId, callback) {…}
