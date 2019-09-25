@@ -26,6 +26,8 @@
         $tbody = $('tbody')
         $addBtn.addEventListener('click', createUser);
 
+        findAllUsers()
+
     }
 
     // handles create user event when user clicks on plus icon. Reads from the form elements and creates a user object.
@@ -49,9 +51,11 @@
         userService.createUser(user, parsed_user => renderUser(parsed_user))
     }
 
-    // // called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all the users 
-    // // and passes response to renderUsers
-    // function findAllUsers() {…}
+    // called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all the users 
+    // and passes response to renderUsers
+    function findAllUsers() {
+        userService.findAllUsers(user_many => renderUsers(user_many))
+    }
 
     // // called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
     // //  Reads the user id from the icon id attribute. Uses user service findUserById()
