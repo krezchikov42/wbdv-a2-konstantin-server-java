@@ -1,12 +1,12 @@
-// import User from '/user.model.client';
-
 (function() {
+    // import AdminUserServiceClient from './user.service.client'; // or './module'
+
     var $usernameFld, $passwordFld;
     var $removeBtn, $editBtn, $createBtn;
     var $firstNameFld, $lastNameFld, $roleFld;
     var $userRowTemplate, $tbody;
     var $searchBtn, $addBtn, $checkBtn;
-    // var userService = new AdminUserServiceClient();
+    var userService = new AdminUserServiceClient();
     // const users = [1, 2, 3, 4, 5, 6]
     // const user = { 'username': 'a', 'password': '***', 'first_name': 'b', 'last_name': 'l', 'role': 'Faculty' }
     // const users = [{ 'username': 'a', 'password': '***', 'first': 'b', 'last': 'l' }]
@@ -50,6 +50,7 @@
         console.log('user', user)
 
         renderUser(user)
+        userService.createUser(user)
     }
 
     // // called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all the users 
