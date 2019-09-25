@@ -4,19 +4,21 @@ function AdminUserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
-    this.url = 'https://wbdv-generic-server.herokuapp.com/api/001289771';
+    this.url = "https://wbdv-generic-server.herokuapp.com/api/001289771";
     var self = this;
+
 
     //accepts a user object and adds it to a collection of users
     function createUser(user, callback) {
-        let url = this.url + '/users';
-        let promise = fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(user),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(response => response.json().then(parsedJson => callback(parsedJson)))
+        let url = this.url + "/users";
+        fetch(url, {
+                method: "POST",
+                body: JSON.stringify(user),
+                headers: {
+                    "content-type": "application/json"
+                }
+            }).then(response => (response.json()))
+            .then(parsedJson => callback(parsedJson))
     }
 
     //retrieves all users as an array of JSON objects
