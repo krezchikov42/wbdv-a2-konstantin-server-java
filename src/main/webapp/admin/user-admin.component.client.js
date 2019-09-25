@@ -58,10 +58,12 @@
         userService.findAllUsers(user_many => renderUsers(user_many))
     }
 
-    // // called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
-    // //  Reads the user id from the icon id attribute. Uses user service findUserById()
-    // //   to retrieve user and then updates the form on server response
-    // function findUserById() {…}
+    // called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
+    //  Reads the user id from the icon id attribute. Uses user service findUserById()
+    //   to retrieve user and then updates the form on server response
+    function findUserById(user_id) {
+        userService.findUserById(user_id)
+    }
 
     // handles delete user event when user clicks the cross icon. Reads the user id from the icon id attribute.
     //  Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
@@ -93,11 +95,9 @@
         rowClone.find('.wbdv-role').html(user.role)
         let $removeBtn = rowClone.find('.wbdv-remove');
         $removeBtn.click(event => deleteUser(user))
-            //     // $removeBtn.attr("id", movies[i].id)
-
-        // // $removeBtn.
-        // let $editBUtton = rowClone.find('.wbdv-edit')
-        // rowClone.
+        let $editButton = rowClone.find('.wbdv-edit')
+        $editButton.click(event => selectUser(user))
+            // rowClone.
         $tbody.append(rowClone)
     }
 
