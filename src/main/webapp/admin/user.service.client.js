@@ -12,13 +12,12 @@ function AdminUserServiceClient() {
     function createUser(user, callback) {
         let url = this.url + "/users";
         fetch(url, {
-                method: "POST",
-                body: JSON.stringify(user),
-                headers: {
-                    "content-type": "application/json"
-                }
-            }).then(response => (response.json()))
-            .then(callback)
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                "content-type": "application/json"
+            }
+        })
     }
 
     //retrieves all users as an array of JSON objects
@@ -57,14 +56,13 @@ function AdminUserServiceClient() {
     }
 
     //removes the user whose id matches the id parameter
-    function deleteUser(userId, callback) {
+    function deleteUser(userId) {
         let url = this.url + '/users/' + userId;
         fetch(url, {
             method: 'DELETE',
-            body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => response.json()).then(callback)
+        }).then(response => (response.json()))
     }
 }

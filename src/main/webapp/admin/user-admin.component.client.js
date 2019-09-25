@@ -48,7 +48,8 @@
         };
         console.log(user)
 
-        userService.createUser(user, parsed_user => renderUser(parsed_user))
+        userService.createUser(user)
+        renderUser(user)
     }
 
     // called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all the users 
@@ -64,8 +65,15 @@
 
     // handles delete user event when user clicks the cross icon. Reads the user id from the icon id attribute.
     //  Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
-    function deleteUser() {
+    function deleteUser(user) {
+        console.log('delete', user)
+        userService.deleteUser(user.id)
+        deleteRow(user_id)
+    }
 
+    function deleteRow(user_id) {
+        let $row = $(user_id + '_row');
+        $row.remove()
     }
 
     // function selectUser() {…}
@@ -83,6 +91,13 @@
         rowClone.find('.wbdv-first-name').html(user.first_name);
         rowClone.find('.wbdv-last-name').html(user.last_name);
         rowClone.find('.wbdv-role').html(user.role)
+        let $removeBtn = rowClone.find('.wbdv-remove');
+        $removeBtn.click(event => deleteUser(user))
+            //     // $removeBtn.attr("id", movies[i].id)
+
+        // // $removeBtn.
+        // let $editBUtton = rowClone.find('.wbdv-edit')
+        // rowClone.
         $tbody.append(rowClone)
     }
 
