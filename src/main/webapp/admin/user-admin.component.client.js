@@ -92,7 +92,7 @@
     // the table row to the table body
 
     function renderUsers(user_many) {
-        $tbody.clear()
+        $('wbdv-template').remove();
         for (var user_num in user_many) {
             user_one = user_many[user_num]
             renderUser(user_one)

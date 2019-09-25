@@ -18,7 +18,7 @@ function AdminUserServiceClient() {
                     "content-type": "application/json"
                 }
             }).then(response => (response.json()))
-            .then(parsedJson => callback(parsedJson))
+            .then(callback)
     }
 
     //retrieves all users as an array of JSON objects
