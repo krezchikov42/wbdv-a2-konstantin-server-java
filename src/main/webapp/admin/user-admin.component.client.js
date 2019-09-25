@@ -37,8 +37,8 @@
     //  Uses the user service createUser() function to create the new user. Updates the list of users on server response
     function createUser() {
         let user = getUserFromForm()
-
         userService.createUser(user, () => findAllUsers())
+        clearForms()
     }
 
     function getUserFromForm() {
@@ -95,6 +95,8 @@
             let user_form = getUserFromForm()
             let user_id = current_user_selected.id
             userService.updateUser(user_id, user_form, findAllUsers())
+            clearForms()
+            current_user_selected = null;
         }
     }
 
@@ -113,6 +115,14 @@
         $tbody.append(rowClone)
     }
 
+
+    function clearForms() {
+        $usernameFld.value = ""
+        $passwordFld.value = ""
+        $firstNameFld.value = ""
+        $lastNameFld.value = ""
+        $roleFld.value = ""
+    }
 
     // accepts an array of user instances, clears the current content of the table body, iterates over the array of users,
     //  clones a table row template for each user instance, populates the table row with the user object properties, adds
