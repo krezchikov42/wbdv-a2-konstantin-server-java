@@ -94,7 +94,7 @@
         if (current_user_selected) {
             let user_form = getUserFromForm()
             let user_id = current_user_selected.id
-            userService.updateUser(user_id, user_form, findAllUsers())
+            userService.updateUser(user_id, user_form, findAllUsers)
             clearForms()
             current_user_selected = null;
         }
