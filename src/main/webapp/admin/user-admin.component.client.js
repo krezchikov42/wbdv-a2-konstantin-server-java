@@ -1,5 +1,4 @@
 (function() {
-    // import AdminUserServiceClient from './user.service.client'; // or './module'
 
     var $usernameFld, $passwordFld;
     var $removeBtn, $editBtn, $createBtn;
@@ -8,9 +7,7 @@
     var $searchBtn, $addBtn, $checkBtn;
     var userService = new AdminUserServiceClient();
     var current_user_selected;
-    // const users = [1, 2, 3, 4, 5, 6]
-    const user_a = { 'username': 'a', 'password': '***', 'first_name': 'b', 'last_name': 'l', 'role': 'Faculty' }
-        // const users = [{ 'username': 'a', 'password': '***', 'first': 'b', 'last': 'l' }]
+
     $(main);
 
     // executes on document load, when the browser is done parsing the html page and the dom is ready.
@@ -123,6 +120,7 @@
         $firstNameFld.value = ""
         $lastNameFld.value = ""
         $roleFld.value = ""
+        current_user_selected = null;
     }
 
     // accepts an array of user instances, clears the current content of the table body, iterates over the array of users,
