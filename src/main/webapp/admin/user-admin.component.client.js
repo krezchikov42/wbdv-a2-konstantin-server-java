@@ -38,6 +38,7 @@
         clearForms()
     }
 
+    //creates a user from the current information in the forms
     function getUserFromForm() {
         let username = $usernameFld.value;
         let password = $passwordFld.value;
@@ -62,13 +63,13 @@
     }
 
     // called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
-    //  Reads the user id from the icon id attribute. Uses user service findUserById()
+    //   Uses user service findUserById()
     //   to retrieve user and then updates the form on server response
     function findUserById(user_id) {
         userService.findUserById(user_id)
     }
 
-    // handles delete user event when user clicks the cross icon. Reads the user id from the icon id attribute.
+    // handles delete user event when user clicks the cross icon. 
     //  Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
     function deleteUser(user) {
         userService.deleteUser(user.id, findAllUsers)
@@ -84,9 +85,9 @@
         current_user_selected = user
     }
 
-    // // handles update user event when user clicks on check mark icon. Reads the user id from the icon id attribute.
-    // //  Reads new user values form the form, creates a user object and then uses user service updateUser()
-    // //   to send the new user data to server. Updates user list on server response
+    // handles update user event when user clicks on check mark icon. 
+    //  Reads new user values form the form, creates a user object and then uses user service updateUser()
+    //   to send the new user data to server. Updates user list on server response
     function updateUser() {
         if (current_user_selected) {
             let user_form = getUserFromForm()
@@ -114,6 +115,7 @@
     }
 
 
+    //resets forms and selected user
     function clearForms() {
         $usernameFld.value = ""
         $passwordFld.value = ""
