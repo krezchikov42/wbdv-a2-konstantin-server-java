@@ -17,7 +17,7 @@ function AdminUserServiceClient() {
             headers: {
                 "content-type": "application/json"
             }
-        })
+        }).then(callback)
     }
 
     //retrieves all users as an array of JSON objects
@@ -52,17 +52,17 @@ function AdminUserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => response.json()).then(callback)
+        }).then(callback)
     }
 
     //removes the user whose id matches the id parameter
-    function deleteUser(userId) {
+    function deleteUser(userId, callback) {
         let url = this.url + '/users/' + userId;
         fetch(url, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => (response.json()))
+        }).then(callback)
     }
 }
