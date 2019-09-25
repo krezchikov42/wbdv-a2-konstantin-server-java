@@ -103,6 +103,7 @@
     // accepts a user object as parameter and updates the form with the user propertie
     function renderUser(user) {
         const rowClone = $userRowTemplate.clone();
+        rowClone.removeClass("wbdv-hidden");
         rowClone.find('.wbdv-username').html(user.username);
         rowClone.find('.wbdv-password').html(user.password);
         rowClone.find('.wbdv-first-name').html(user.first_name);
