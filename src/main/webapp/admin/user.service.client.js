@@ -16,8 +16,7 @@ function AdminUserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        })
-        promise.then(response => response.json().then(parsedJson => callback(parsedJson)))
+        }).then(response => response.json().then(parsedJson => callback(parsedJson)))
     }
 
     //retrieves all users as an array of JSON objects
@@ -28,8 +27,7 @@ function AdminUserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        })
-        promise.then(response => response.json().then(parsedJson => callback(parsedJson)))
+        }).then(response => response.json().then(parsedJson => callback(parsedJson)))
     }
 
     //retrieves a single user object whose id is equal to the id parameter
