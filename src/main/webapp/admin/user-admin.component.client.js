@@ -7,6 +7,7 @@
     var $userRowTemplate, $tbody;
     var $searchBtn, $addBtn, $checkBtn;
     var userService = new AdminUserServiceClient();
+    var current_user_selected;
     // const users = [1, 2, 3, 4, 5, 6]
     const user_a = { 'username': 'a', 'password': '***', 'first_name': 'b', 'last_name': 'l', 'role': 'Faculty' }
         // const users = [{ 'username': 'a', 'password': '***', 'first': 'b', 'last': 'l' }]
@@ -25,6 +26,8 @@
         $addBtn = $('.wbdv-create')[0];
         $tbody = $('tbody')
         $addBtn.addEventListener('click', createUser);
+        $checkBtn = $('.wbdv-update')[0]
+        $checkBtn.addEventListener('click', updateUser);
 
         findAllUsers()
 
@@ -33,6 +36,12 @@
     // handles create user event when user clicks on plus icon. Reads from the form elements and creates a user object.
     //  Uses the user service createUser() function to create the new user. Updates the list of users on server response
     function createUser() {
+        let user = getUserFromForm()
+
+        userService.createUser(user, () => findAllUsers())
+    }
+
+    function getUserFromForm() {
         let username = $usernameFld.value;
         let password = $passwordFld.value;
         let firstName = $firstNameFld.value;
@@ -46,10 +55,7 @@
             "last_name": lastName,
             "role": role
         };
-        console.log(user)
-
-        userService.createUser(user)
-        renderUser(user)
+        return user
     }
 
     // called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all the users 
@@ -68,22 +74,29 @@
     // handles delete user event when user clicks the cross icon. Reads the user id from the icon id attribute.
     //  Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
     function deleteUser(user) {
-        console.log('delete', user)
-        userService.deleteUser(user.id)
-        deleteRow(user_id)
+        userService.deleteUser(user.id, findAllUsers)
     }
 
-    function deleteRow(user_id) {
-        let $row = $(user_id + '_row');
-        $row.remove()
+    function selectUser(user) {
+        findUserById(user.id)
+        $usernameFld.value = user.username
+        $passwordFld.value = user.password
+        $firstNameFld.value = user.first_name
+        $lastNameFld.value = user.last_name
+        $roleFld.value = user.role
+        current_user_selected = user
     }
-
-    // function selectUser() {…}
 
     // // handles update user event when user clicks on check mark icon. Reads the user id from the icon id attribute.
     // //  Reads new user values form the form, creates a user object and then uses user service updateUser()
     // //   to send the new user data to server. Updates user list on server response
-    // function updateUser() {…}
+    function updateUser() {
+        if (current_user_selected) {
+            let user_form = getUserFromForm()
+            let user_id = current_user_selected.id
+            userService.updateUser(user_id, user_form, findAllUsers())
+        }
+    }
 
     // accepts a user object as parameter and updates the form with the user propertie
     function renderUser(user) {
@@ -97,7 +110,6 @@
         $removeBtn.click(event => deleteUser(user))
         let $editButton = rowClone.find('.wbdv-edit')
         $editButton.click(event => selectUser(user))
-            // rowClone.
         $tbody.append(rowClone)
     }
 
@@ -107,7 +119,7 @@
     // the table row to the table body
 
     function renderUsers(user_many) {
-        $('wbdv-template').remove();
+        $('.wbdv-template').remove();
         for (var user_num in user_many) {
             user_one = user_many[user_num]
             renderUser(user_one)
