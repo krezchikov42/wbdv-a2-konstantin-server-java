@@ -1,13 +1,20 @@
 package com.example.wbdvf18jannunziserverjava.controllers;
 
 import com.example.wbdvf18jannunziserverjava.models.Widget;
+import com.example.wbdvf18jannunziserverjava.repositories.WidgetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class WidgetController {
+
+    @Autowired
+    WidgetRepository repository;
 
     List<Widget> widgets = new ArrayList<Widget>();
     {
@@ -22,8 +29,10 @@ public class WidgetController {
     @PostMapping("/api/widgets")
     public List<Widget> createWidget(
             @RequestBody Widget widget) {
-        widgets.add(widget);
-        return widgets;
+        repository.save(widget);
+        return repository.findAllWidgets();
+//        widgets.add(widget);
+//        return widgets;
     }
 
     @PutMapping("/api/widgets/{widgetId}")
@@ -54,18 +63,26 @@ public class WidgetController {
 
     @GetMapping("/api/widgets")
     public List<Widget> findAllWidget() {
-        return widgets;
+        return repository.findAllWidgets();
+//        return (List<Widget>)repository.findAll();
+//        return widgets;
     }
 
     @GetMapping("/api/widgets/{widgetId}")
     public Widget findWidgetById(
             @PathVariable("widgetId") Integer id) {
-        for(Widget w: widgets) {
-            if(w.getId().equals(id)) {
-                return w;
-            }
-        }
-        return null;
+        return repository.findWidgetById(id);
+//        Optional<Widget> w = repository.findById(id);
+//        if(w.isPresent()) {
+//            return w.get();
+//        }
+//        return null;
+//        for(Widget w: widgets) {
+//            if(w.getId().equals(id)) {
+//                return w;
+//            }
+//        }
+//        return null;
     }
 
     // createWidget
