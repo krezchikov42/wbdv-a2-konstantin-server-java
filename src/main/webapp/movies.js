@@ -22,9 +22,11 @@
 		$createBtn.click(createNewMovie)
 		loadMovies()
 	}
+	
+	//http://localhost:4000
 
 	function loadMovies() {
-		fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/themovies")
+		fetch("http://localhost:4000/api/jannunzi/themovies")
 			.then(response => response.json())
 			.then(renderMovies)
 	}
@@ -35,7 +37,7 @@
 			title: newTitle,
 			id: (Date.now()) + ''
 		}
-		fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/themovies", {
+		fetch("http://localhost:4000/api/jannunzi/themovies", {
 			method: 'post',
 			body: JSON.stringify(newMovie),
 			headers: {
@@ -75,7 +77,7 @@
 		console.log(deleteButton.attr("id"))
 		const movieIdToDelete = deleteButton.attr("id")
 
-		fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/themovies/" + movieIdToDelete, {
+		fetch("http://localhost:4000/api/jannunzi/themovies/" + movieIdToDelete, {
 			method: 'delete'})
 		.then(loadMovies)
 		// console.log(movies)
