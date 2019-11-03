@@ -20,27 +20,44 @@ public class WidgetService {
 
     //Creates a new Widget instance and add it to the existing collection of widgets. Returns new list of widgets containing new widget
     public List<Widget> createWidget(Widget widget) {
-        return null;
+        this.widget_many.add(widget);
+        return  this.widget_many;
     }
 
     //Returns collection of all widgets
     public List<Widget> findAllWidgets(){
-        return  null;
+        return  this.widget_many;
     }
 
     //    Returns a single widget instance whose id is equal to wid
     public Widget findWidgetById( Integer wid){
-        return  null;
+        Widget return_widget = this.widget_many.stream()
+                .filter(widget -> wid.equals(widget.getId()))
+                .findAny()
+                .orElse(null);
+        return  return_widget;
     }
 
     //Updates widget whose id is wid encoded as JSON in HTTP body
     public Widget updateWidget(Integer wid, Widget widget) {
-        return  null;
+        for(int i = 0; i < this.widget_many.size(); i++) {
+            Widget w = widget_many.get(i);
+            if(w.getId().equals(wid)) {
+                widget_many.set(i,widget);
+                return widget;
+            }
+        }
+        return null;
     }
 
     //Removes widget whose id is wid
     public void deleteWidget(Integer wid) {
-
+        for(int i = 0; i < this.widget_many.size(); i++) {
+            Widget w = widget_many.get(i);
+            if(w.getId().equals(wid)) {
+                widget_many.remove(i);
+            }
+        }
     }
 
 
