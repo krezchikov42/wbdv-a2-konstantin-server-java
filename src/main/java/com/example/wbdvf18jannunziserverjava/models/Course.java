@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Course {
     Integer id;
-    List<Module> module_many:
+    List<Module> moduleMany;
+    String title;
 
     public Course() {
     }
@@ -13,24 +14,25 @@ public class Course {
         this.id = id;
     }
 
-    public Course(Integer id, List<Module> module_many) {
+    public Course(Integer id, List<Module> moduleMany, String title) {
         this.id = id;
-        this.module_many = module_many;
+        this.moduleMany = moduleMany;
+        this.title = title;
     }
 
-    public Integer getId() {
-        return id;
+    public String getTitle() {
+        return title;
     }
 
-    public List<Module> getModule_many() {
-        return module_many;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public List<Module> getModuleMany() {
+        return moduleMany;
     }
 
-    public void setModule_many(List<Module> module_many) {
-        this.module_many = module_many;
+    public void setModuleMany(List<Module> moduleMany) {
+        this.moduleMany = moduleMany;
     }
 }
