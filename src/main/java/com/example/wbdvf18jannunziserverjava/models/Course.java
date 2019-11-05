@@ -1,5 +1,6 @@
 package com.example.wbdvf18jannunziserverjava.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
@@ -14,10 +15,20 @@ public class Course {
         this.id = id;
     }
 
+    public  Course(Integer id, String title) {
+        this.id = id;
+        this.moduleMany = new ArrayList<>();
+        this.title = title;
+    }
+
     public Course(Integer id, List<Module> moduleMany, String title) {
         this.id = id;
         this.moduleMany = moduleMany;
         this.title = title;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getTitle() {
