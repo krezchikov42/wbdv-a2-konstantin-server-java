@@ -2,23 +2,45 @@ package com.example.wbdvf18jannunziserverjava.models;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name="widgets")
 public class Widget {
+
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String title;
-    private String type;
+    private String name;
+    private WidgetType type;
+    private Integer order;
     private String text;
-    private Boolean ordered;
+    private String url;
     private Integer size;
+    private Integer width, height;
+    private String cssClass;
+    private String style;
+    private String value;
+    private WidgetDataType dataType;
+    private Boolean ordered;
 
-    public String getType() {
+    public Widget() {
+    }
+
+    public Widget(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public WidgetType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(WidgetType type) {
         this.type = type;
     }
 
@@ -46,14 +68,6 @@ public class Widget {
         this.size = size;
     }
 
-    public Widget() {
-    }
-
-    public Widget(Integer id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -62,11 +76,75 @@ public class Widget {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public String getCssClass() {
+        return cssClass;
+    }
+
+    public void setCssClass(String cssClass) {
+        this.cssClass = cssClass;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public WidgetDataType getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(WidgetDataType dataType) {
+        this.dataType = dataType;
     }
 }
