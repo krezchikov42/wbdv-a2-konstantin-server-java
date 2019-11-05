@@ -11,6 +11,11 @@ public class Topic {
         this.id = id;
     }
 
+    public Topic(Integer id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
     public Topic(Integer id, List<Widget> widgetMany, String title) {
         this.id = id;
         this.widgetMany = widgetMany;

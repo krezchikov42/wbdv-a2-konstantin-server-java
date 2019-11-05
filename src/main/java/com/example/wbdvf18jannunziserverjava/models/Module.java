@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Module {
     Integer id;
-    List<Topic> topicMany;
+    List<Lesson> lessons;
     String title;
 
 
@@ -16,15 +16,10 @@ public class Module {
         this.id = id;
     }
 
-    public Module(Integer id, String title) {
-        this.id = id;
-        this.title = title;
-        this.topicMany = new ArrayList<>();
-    }
 
-    public Module(Integer id, List<Topic> topicMany, String title) {
+    public Module(Integer id, List<Lesson> lessons, String title) {
         this.id = id;
-        this.topicMany = topicMany;
+        this.lessons = lessons;
         this.title = title;
     }
 
@@ -32,13 +27,12 @@ public class Module {
         return id;
     }
 
-
-    public List<Topic> getTopicMany() {
-        return topicMany;
+    public List<Lesson> getLessons() {
+        return lessons;
     }
 
-    public void setTopicMany(List<Topic> topicMany) {
-        this.topicMany = topicMany;
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
     public String getTitle() {
