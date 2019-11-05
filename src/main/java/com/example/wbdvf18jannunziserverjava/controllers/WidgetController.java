@@ -12,8 +12,12 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 public class WidgetController {
-    
+
     WidgetService service;
+
+    public WidgetController() {
+        service = new WidgetService();
+    }
 
     @PostMapping("/api/widgets")
     public List<Widget> createWidget(
@@ -28,14 +32,14 @@ public class WidgetController {
             @RequestBody Widget newWidget
     ) {
         this.service.updateWidget(id,newWidget);
-        return  this.service.findAllWidgets();
+        return this.service.findAllWidgets();
     }
 
     @DeleteMapping("/api/widgets/{widgetId}")
     public List<Widget> deleteWidget(
             @PathVariable("widgetId") Integer id) {
        this.service.deleteWidget(id);
-        return this.service.findAllWidgets();
+       return this.service.findAllWidgets();
     }
 
     @GetMapping("/api/widgets")
