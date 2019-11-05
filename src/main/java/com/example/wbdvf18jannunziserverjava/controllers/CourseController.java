@@ -1,9 +1,7 @@
 package com.example.wbdvf18jannunziserverjava.controllers;
 
 import com.example.wbdvf18jannunziserverjava.models.Course;
-import com.example.wbdvf18jannunziserverjava.models.Widget;
 import com.example.wbdvf18jannunziserverjava.services.CourseService;
-import com.example.wbdvf18jannunziserverjava.services.WidgetService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +9,10 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class CourseController {
     CourseService service;
+
+    public CourseController() {
+        this.service = new CourseService();
+    }
 
     @PostMapping("/api/courses")
     public List<Course> createCourse(
