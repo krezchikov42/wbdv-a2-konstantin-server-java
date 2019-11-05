@@ -8,7 +8,7 @@ import java.util.List;
 
 public class WidgetService {
     List<Widget> widget_many;
-    
+
     public WidgetService() {
         widget_many= new ArrayList<>();
         Widget w1 = new Widget(123, "Widget 1");

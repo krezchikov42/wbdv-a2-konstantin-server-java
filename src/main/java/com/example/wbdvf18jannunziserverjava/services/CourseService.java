@@ -50,8 +50,9 @@ public class CourseService {
     public void deleteCourse(Integer cid) {
         for (int i = 0; i < this.courseMany.size(); i++) {
             Course course = courseMany.get(i);
-            if (course.getId() == cid) {
-                courseMany.remove(cid);
+            System.out.println(course.getId());
+            if (course.getId().equals(cid)) {
+                courseMany.remove(i);
             }
         }
     }

@@ -30,19 +30,19 @@ public class CourseController {
         return service.findAllCourses();
     }
 
-    @DeleteMapping("api/courses/{courseId}")
+    @DeleteMapping("/api/courses/{courseId}")
     public List<Course> deleteCourse(
             @PathVariable("courseId") Integer id) {
         service.deleteCourse(id);
         return service.findAllCourses();
     }
 
-    @GetMapping("api/courses")
+    @GetMapping("/api/courses")
     public List<Course> findAllCourse() {
         return service.findAllCourses();
     }
 
-    @GetMapping("api/courses/{courseId}")
+    @GetMapping("/api/courses/{courseId}")
     public Course findCourseById(
             @PathVariable("courseId") Integer id) {
         return service.findCourseById(id);
