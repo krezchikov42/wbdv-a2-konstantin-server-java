@@ -1,6 +1,7 @@
 package com.example.wbdvf18jannunziserverjava.controllers;
 
 import com.example.wbdvf18jannunziserverjava.models.Widget;
+import com.example.wbdvf18jannunziserverjava.repositories.TopicRepository;
 import com.example.wbdvf18jannunziserverjava.repositories.WidgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,17 @@ public class WidgetController {
     @Autowired
     WidgetRepository repository;
 
+    @Autowired
+    TopicRepository topicRepository;
+
     public WidgetController() {
     }
 
-    @PostMapping("/api/widgets")
+    @PostMapping("/api/topics/{topicId}/widgets")
     public List<Widget> createWidget(
+            @PathVariable("topicId") Integer id,
             @RequestBody Widget widget) {
+        topicRepository.findTopicById()
         repository.save(widget);
         return  (List<Widget>) repository.findAll();
     }

@@ -1,10 +1,16 @@
 package com.example.wbdvf18jannunziserverjava.models;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="courses")
 public class Course {
     Integer id;
+    @OneToMany(mappedBy = "course")
     List<Module> moduleMany;
     String title;
 
@@ -31,6 +37,10 @@ public class Course {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -46,4 +56,5 @@ public class Course {
     public void setModuleMany(List<Module> moduleMany) {
         this.moduleMany = moduleMany;
     }
+
 }

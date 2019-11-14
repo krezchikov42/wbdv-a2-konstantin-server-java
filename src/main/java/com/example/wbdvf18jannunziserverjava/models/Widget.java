@@ -1,5 +1,7 @@
 package com.example.wbdvf18jannunziserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,10 @@ public class Widget {
     private String value;
     private WidgetDataType dataType;
     private Boolean ordered;
+
+    @ManyToOne
+    @JsonIgnore
+    private Topic topic;
 
     public Widget() {
     }

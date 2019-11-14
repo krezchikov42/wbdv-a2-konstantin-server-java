@@ -1,13 +1,18 @@
 package com.example.wbdvf18jannunziserverjava.controllers;
 
 import com.example.wbdvf18jannunziserverjava.models.Course;
+import com.example.wbdvf18jannunziserverjava.repositories.CourseRepository;
 import com.example.wbdvf18jannunziserverjava.services.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 public class CourseController {
+    @Autowired
+    CourseRepository repository;
+
     CourseService service;
 
     public CourseController() {
@@ -16,7 +21,7 @@ public class CourseController {
 
     @PostMapping("/api/courses")
     public List<Course> createCourse(
-            @RequestBody Course course){
+            @RequestBody Course course) {
         service.createCourse(course);
         return service.findAllCourses();
     }
@@ -25,7 +30,7 @@ public class CourseController {
     public List<Course> updateCourse(
             @PathVariable("courseId") Integer id,
             @RequestBody Course course
-    ){
+    ) {
         service.updateCourse(id, course);
         return service.findAllCourses();
     }
@@ -38,8 +43,8 @@ public class CourseController {
     }
 
     @GetMapping("/api/courses")
-    public List<Course> findAllCourse() {
-        return service.findAllCourses();
+    public List<Course> findAllCourses() {
+        return repository.findAllCourses();
     }
 
     @GetMapping("/api/courses/{courseId}")
@@ -47,5 +52,4 @@ public class CourseController {
             @PathVariable("courseId") Integer id) {
         return service.findCourseById(id);
     }
-
 }

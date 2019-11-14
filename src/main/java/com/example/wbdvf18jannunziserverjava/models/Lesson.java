@@ -1,16 +1,27 @@
 package com.example.wbdvf18jannunziserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table(name="lessons")
 public class Lesson {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String title;
-    ArrayList<Topic> topics;
+    @ManyToOne
+    @JsonIgnore
+    private Module module;
+    @OneToMany(mappedBy = "lesson")
+    ArrayList<Topic> topicMany;
 
     public Lesson(Integer id, String title, ArrayList<Topic> topics) {
         this.id = id;
         this.title = title;
-        this.topics = topics;
+        this.topicMany = topics;
     }
 
     public Integer getId() {
@@ -30,10 +41,11 @@ public class Lesson {
     }
 
     public ArrayList<Topic> getTopics() {
-        return topics;
+        return topicMany;
     }
 
     public void setTopics(ArrayList<Topic> topics) {
-        this.topics = topics;
+        this.topicMany = topics;
     }
+
 }
