@@ -2,28 +2,25 @@ package com.example.wbdvf18jannunziserverjava.controllers;
 
 import com.example.wbdvf18jannunziserverjava.models.Widget;
 import com.example.wbdvf18jannunziserverjava.repositories.WidgetRepository;
-import com.example.wbdvf18jannunziserverjava.services.WidgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class WidgetController {
-
-    WidgetService service;
+    @Autowired
+    WidgetRepository repository;
 
     public WidgetController() {
-        service = new WidgetService();
     }
 
     @PostMapping("/api/widgets")
     public List<Widget> createWidget(
             @RequestBody Widget widget) {
-        this.service.createWidget(widget);
-        return  this.service.findAllWidgets();
+        repository.save(widget);
+        return  (List<Widget>) repository.findAll();
     }
 
     @PutMapping("/api/widgets/{widgetId}")
@@ -31,26 +28,26 @@ public class WidgetController {
             @PathVariable("widgetId") Integer id,
             @RequestBody Widget newWidget
     ) {
-        this.service.updateWidget(id,newWidget);
-        return this.service.findAllWidgets();
+        repository.save(newWidget);
+        return repository.findAllWidgets();
     }
 
     @DeleteMapping("/api/widgets/{widgetId}")
     public List<Widget> deleteWidget(
             @PathVariable("widgetId") Integer id) {
-       this.service.deleteWidget(id);
-       return this.service.findAllWidgets();
+       repository.deleteById(id);
+       return   repository.findAllWidgets();
     }
 
     @GetMapping("/api/widgets")
     public List<Widget> findAllWidget() {
-        return this.service.findAllWidgets();
+        return repository.findAllWidgets();
     }
 
     @GetMapping("/api/widgets/{widgetId}")
     public Widget findWidgetById(
             @PathVariable("widgetId") Integer id) {
-        return service.findWidgetById(id);
+        return repository.findWidgetById(id);
     }
 
 

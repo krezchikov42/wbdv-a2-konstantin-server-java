@@ -2,22 +2,16 @@ package com.example.wbdvf18jannunziserverjava.models;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @Table(name="widgets")
 public class Widget {
-
-
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private WidgetType type;
-    private Integer order;
+    private Integer order_place;
     private String text;
     private String url;
     private Integer size;
@@ -84,12 +78,12 @@ public class Widget {
         this.name = name;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrder_place() {
+        return order_place;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrder_place(Integer order_place) {
+        this.order_place = order_place;
     }
 
     public String getUrl() {
