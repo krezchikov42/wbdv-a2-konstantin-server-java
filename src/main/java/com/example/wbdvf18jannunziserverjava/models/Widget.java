@@ -147,4 +147,12 @@ public class Widget {
     public void setDataType(WidgetDataType dataType) {
         this.dataType = dataType;
     }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 }

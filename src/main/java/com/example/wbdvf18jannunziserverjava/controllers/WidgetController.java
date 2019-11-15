@@ -26,9 +26,9 @@ public class WidgetController {
             @PathVariable("topicId") Integer id,
             @RequestBody Widget widget) {
         Topic topic = topicRepository.findTopicById(id);
-        topic.getWidgetMany().add(widget);
-        topicRepository.save(topic);
-        return  (List<Widget>) repository.findAll();
+        widget.setTopic(topic);
+        repository.save(widget);
+        return topic.getWidgetMany();
     }
 
     @GetMapping("/api/topics/{topicId}/widgets")
@@ -44,14 +44,16 @@ public class WidgetController {
             @RequestBody Widget newWidget
     ) {
         repository.save(newWidget);
-        return repository.findAllWidgets();
+        Topic topic = newWidget.getTopic();
+        return topic.getWidgetMany();
     }
 
     @DeleteMapping("/api/widgets/{widgetId}")
     public List<Widget> deleteWidget(
             @PathVariable("widgetId") Integer id) {
+        Topic topic = repository.findWidgetById(id).getTopic();
        repository.deleteById(id);
-       return   repository.findAllWidgets();
+       return   topic.getWidgetMany();
     }
 
     @GetMapping("/api/widgets")
