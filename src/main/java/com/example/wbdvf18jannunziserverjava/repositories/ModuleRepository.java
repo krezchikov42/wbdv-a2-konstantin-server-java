@@ -14,4 +14,10 @@ public interface ModuleRepository
     public List<Module> findModulesForCourse(
             @Param("courseId") Integer id
     );
+
+    @Query("select module from Module module where module.id=:moduleId")
+    public Module findModuleForId(
+            @Param("moduleId") Integer id
+    );
+
 }
