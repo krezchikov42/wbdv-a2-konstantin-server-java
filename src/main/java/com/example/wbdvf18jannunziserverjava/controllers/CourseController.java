@@ -22,8 +22,8 @@ public class CourseController {
     @PostMapping("/api/courses")
     public List<Course> createCourse(
             @RequestBody Course course) {
-        service.createCourse(course);
-        return service.findAllCourses();
+      repository.save(course);
+      return repository.findAllCourses();
     }
 
     @PutMapping("/api/courses/{courseId}")
@@ -31,15 +31,15 @@ public class CourseController {
             @PathVariable("courseId") Integer id,
             @RequestBody Course course
     ) {
-        service.updateCourse(id, course);
-        return service.findAllCourses();
+        repository.save(course);
+        return repository.findAllCourses();
     }
 
     @DeleteMapping("/api/courses/{courseId}")
     public List<Course> deleteCourse(
             @PathVariable("courseId") Integer id) {
-        service.deleteCourse(id);
-        return service.findAllCourses();
+        repository.deleteById(id);
+        return repository.findAllCourses();
     }
 
     @GetMapping("/api/courses")
@@ -50,6 +50,6 @@ public class CourseController {
     @GetMapping("/api/courses/{courseId}")
     public Course findCourseById(
             @PathVariable("courseId") Integer id) {
-        return service.findCourseById(id);
+        return repository.findCourseById(id);
     }
 }

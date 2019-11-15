@@ -1,17 +1,19 @@
 package com.example.wbdvf18jannunziserverjava.models;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="courses")
 public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
     @OneToMany(mappedBy = "course")
     List<Module> moduleMany;
+
     String title;
 
     public Course() {

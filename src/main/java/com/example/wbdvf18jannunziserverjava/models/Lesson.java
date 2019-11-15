@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="lessons")
@@ -15,10 +16,15 @@ public class Lesson {
     @ManyToOne
     @JsonIgnore
     private Module module;
-    @OneToMany(mappedBy = "lesson")
-    ArrayList<Topic> topicMany;
 
-    public Lesson(Integer id, String title, ArrayList<Topic> topics) {
+    @OneToMany(mappedBy = "lesson")
+    private List<Topic> topicMany;
+
+    public Lesson(){
+
+    }
+
+    public Lesson(Integer id, String title, List<Topic> topics) {
         this.id = id;
         this.title = title;
         this.topicMany = topics;
@@ -40,11 +46,11 @@ public class Lesson {
         this.title = title;
     }
 
-    public ArrayList<Topic> getTopics() {
+    public List<Topic> getTopics() {
         return topicMany;
     }
 
-    public void setTopics(ArrayList<Topic> topics) {
+    public void setTopics(List<Topic> topics) {
         this.topicMany = topics;
     }
 

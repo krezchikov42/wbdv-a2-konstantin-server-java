@@ -19,6 +19,10 @@ public class Topic {
     @OneToMany(mappedBy = "topic")
     private List<Widget> widgetMany;
 
+    public  Topic(){
+
+    }
+
     public Topic(Integer id) {
         this.id = id;
     }

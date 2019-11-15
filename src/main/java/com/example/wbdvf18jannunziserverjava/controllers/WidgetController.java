@@ -1,5 +1,6 @@
 package com.example.wbdvf18jannunziserverjava.controllers;
 
+import com.example.wbdvf18jannunziserverjava.models.Topic;
 import com.example.wbdvf18jannunziserverjava.models.Widget;
 import com.example.wbdvf18jannunziserverjava.repositories.TopicRepository;
 import com.example.wbdvf18jannunziserverjava.repositories.WidgetRepository;
@@ -21,12 +22,20 @@ public class WidgetController {
     }
 
     @PostMapping("/api/topics/{topicId}/widgets")
-    public List<Widget> createWidget(
+    public List<Widget> createWidgetForTopic(
             @PathVariable("topicId") Integer id,
             @RequestBody Widget widget) {
-        topicRepository.findTopicById()
-        repository.save(widget);
+        Topic topic = topicRepository.findTopicById(id);
+        topic.getWidgetMany().add(widget);
+        topicRepository.save(topic);
         return  (List<Widget>) repository.findAll();
+    }
+
+    @GetMapping("/api/topics/{topicId}/widgets")
+    public List<Widget> getWidgetsForTopic(
+            @PathVariable("topicId") Integer id){
+        Topic topic = topicRepository.findTopicById(id);
+        return topic.getWidgetMany();
     }
 
     @PutMapping("/api/widgets/{widgetId}")

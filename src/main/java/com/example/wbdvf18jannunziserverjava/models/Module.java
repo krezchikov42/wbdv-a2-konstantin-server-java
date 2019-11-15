@@ -9,9 +9,13 @@ import java.util.List;
 @Entity
 @Table(name="modules")
 public class Module {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
     @OneToMany(mappedBy = "module")
     List<Lesson> lessonMany;
+
     String title;
     @ManyToOne
     @JsonIgnore
