@@ -3,4 +3,4 @@ mysql://b139b975916ee0:fe0af67d@us-cdbr-iron-east-05.cleardb.net/heroku_1505189a
 DBUSERNAME b139b975916ee0
 DBPASSWORD fe0af67d
 DBHOSTNAME us-cdbr-iron-east-05.cleardb.net
-DBSCHEMA heroku_1505189a7d6a54a?reconnect=true
+DBSCHEMA heroku_1505189a7d6a54a
