@@ -23,4 +23,10 @@ public class LessonController {
             @PathVariable("moduleId") Integer moduleId) {
         return repository.findLessonForModule(moduleId);
     }
+
+    @GetMapping("/api/lessons/{lessonId}")
+    public Lesson findLessonById(
+            @PathVariable("lessonId") Integer lessonId) {
+        return repository.findLessonById(lessonId);
+    }
 }

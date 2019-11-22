@@ -14,4 +14,7 @@ public interface LessonRepository
     public List<Lesson> findLessonForModule(
             @Param("moduleId") Integer id
     );
+
+    @Query("select lesson from Lesson lesson where lesson.id=:lessonId")
+    public Lesson findLessonById(@Param("lessonId") Integer id);
 }
