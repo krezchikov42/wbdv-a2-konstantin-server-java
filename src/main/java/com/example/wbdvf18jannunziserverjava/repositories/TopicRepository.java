@@ -15,4 +15,10 @@ public interface TopicRepository
 
     @Query("select topic from Topic topic where topic.id=:topicId")
     public Topic findTopicById(@Param("topicId") Integer id);
+
+    @Query("select topic from Topic topic where topic.lesson.id=:lessonId")
+    public List<Topic> findTopicsForLesson(
+            @Param("lessonId") Integer id
+    );
+
 }
