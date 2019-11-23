@@ -18,7 +18,7 @@ public class LessonController {
     @Autowired
     LessonRepository repository;
 
-    @GetMapping("/api/module/{moduleId}/lessons")
+    @GetMapping("/api/modules/{moduleId}/lessons")
     public List<Lesson> findAllCourses(
             @PathVariable("moduleId") Integer moduleId) {
         return repository.findLessonForModule(moduleId);
